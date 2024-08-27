@@ -1,0 +1,20 @@
+{% if field.value %}
+    <div class="customers-list">
+        <h3>Customers ({{ field.value|length }})</h3>
+        <ul>
+            {% for customer in field.value %}
+                <li>
+                    <a href="{{ ea_url()
+                        .setController('App\\Controller\\Admin\\CustomerCrudController')
+                        .setAction('detail')
+                        .setEntityId(customer.id)
+                    }}">
+                        {{ customer.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <p>No customers associated with this account.</p>
+{% endif %}

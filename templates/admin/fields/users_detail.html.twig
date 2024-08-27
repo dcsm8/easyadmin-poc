@@ -1,0 +1,20 @@
+{% if field.value %}
+    <div class="users-list">
+        <h3>Users ({{ field.value|length }})</h3>
+        <ul>
+            {% for user in field.value %}
+                <li>
+                    <a href="{{ ea_url()
+                        .setController('App\\Controller\\Admin\\UserCrudController')
+                        .setAction('detail')
+                        .setEntityId(user.id)
+                    }}">
+                        {{ user.fullName }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% else %}
+    <p>No users associated with this customer.</p>
+{% endif %}
